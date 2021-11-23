@@ -9,6 +9,13 @@
 
     <ion-content :fullscreen="true">
       <ion-button @click="getEvents()">Default</ion-button>
+      <ion-text>{{ events.length }}</ion-text>
+      <ion-list v-for="event in events" :key="event['event_id']">
+        <ion-item>
+          <ion-text>{{ event["title"] }}</ion-text>
+          <ion-text>{{ event["event_url"] }}</ion-text>
+        </ion-item>
+      </ion-list>
     </ion-content>
   </ion-page>
 </template>
@@ -22,7 +29,7 @@ import {
   IonHeader,
   IonPage,
   IonTitle,
-  IonToolbar
+  IonToolbar,
 } from "@ionic/vue";
 import { defineComponent } from "vue";
 
@@ -37,14 +44,21 @@ export default defineComponent({
     IonBackButton,
     IonButton,
   },
+  data() {
+    return {
+      events: [],
+    };
+  },
   methods: {
     async getEvents() {
       const options: HttpOptions = {
         url: "https://connpass.com/api/v1/event",
+        params: { count: "50" },
       };
       await Http.get(options)
-        .then(function (data) {
-          console.log(data);
+        .then((data) => {
+          console.log(data.data);
+          this.events = JSON.parse(data.data)["events"];
         })
         .catch(function (error) {
           console.log(error);
