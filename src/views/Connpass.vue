@@ -8,12 +8,13 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <ion-button>Default</ion-button>
+      <ion-button @click="getEvents()">Default</ion-button>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
+import { Http, HttpOptions } from "@capacitor-community/http";
 import {
   IonBackButton,
   IonButton,
@@ -35,6 +36,20 @@ export default defineComponent({
     IonToolbar,
     IonBackButton,
     IonButton,
+  },
+  methods: {
+    async getEvents() {
+      const options: HttpOptions = {
+        url: "https://connpass.com/api/v1/event",
+      };
+      await Http.get(options)
+        .then(function (data) {
+          console.log(data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 });
 </script>
