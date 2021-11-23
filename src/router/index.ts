@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import Home from '../views/Home.vue'
 import ButtonList from '../views/Button.vue'
+import Connpass from '../views/Connpass.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,6 +18,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/button',
     name: 'Button List',
     component: ButtonList
+  },
+  {
+      path: '/connpass',
+      name: 'Connpass API',
+      component: Connpass
   }
 ]
 

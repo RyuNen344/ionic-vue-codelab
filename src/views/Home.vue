@@ -20,6 +20,7 @@
           <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a>
         </p>
         <ion-button @click="() => router.push('/button')">Push To Button Page</ion-button>
+        <ion-button @click="() => router.push('/connpass')">Push To Connpass Page</ion-button>
       </div>
     </ion-content>
   </ion-page>
