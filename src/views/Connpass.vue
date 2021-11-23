@@ -56,9 +56,9 @@ export default defineComponent({
         params: { count: "50" },
       };
       await Http.get(options)
-        .then((data) => {
-          console.log(data.data);
-          this.events = JSON.parse(data.data)["events"];
+        .then((response) => {
+          console.log(response.data);
+          this.events = JSON.parse(response.data as string)["events"];
         })
         .catch(function (error) {
           console.log(error);
